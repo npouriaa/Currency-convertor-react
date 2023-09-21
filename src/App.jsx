@@ -1,9 +1,12 @@
 import React from 'react'
 import './App.css'
+import { Button } from '@mui/material'
 
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <Button>Click</Button>
+    </div>
   )
 }
 
