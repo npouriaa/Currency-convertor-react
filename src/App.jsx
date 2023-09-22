@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { Button, Container, Grid, Typography } from "@mui/material";
 import InputAmount from "./components/InputAmount";
@@ -6,17 +6,19 @@ import SelectCountry from "./components/SelectCountry";
 import SwitchCountry from "./components/SwitchCountry";
 
 const App = () => {
+  const [fromCurrency, setFromCurrency] = useState("");
+  const [toCurrency, setToCurrency] = useState("");
   const boxStyles = {
-    marginTop : '160px',
+    marginTop: "160px",
     background: "#fdfdfd",
-    textAlign : 'center',
-    color: '#222',
-    minHeight : '320px',
-    borderRadius : 2,
-    padding : '64px 32px',
-    boxShadow : '0px 10px 100px 79px rgba(0,0,0,0.1);',
-    position : 'relative'
-  }
+    textAlign: "center",
+    color: "#222",
+    minHeight: "320px",
+    borderRadius: 2,
+    padding: "64px 32px",
+    boxShadow: "0px 10px 100px 79px rgba(0,0,0,0.1);",
+    position: "relative",
+  };
   return (
     <Container maxWidth="md" sx={boxStyles}>
       <Typography variant="h5" sx={{ marginBottom: "32px" }}>
@@ -24,9 +26,13 @@ const App = () => {
       </Typography>
       <Grid container spacing={2}>
         <InputAmount />
-        <SelectCountry />
+        <SelectCountry
+          value={fromCurrency}
+          setValue={setFromCurrency}
+          label="From"
+        />
         <SwitchCountry />
-        <SelectCountry />
+        <SelectCountry value={toCurrency} setValue={setToCurrency} label="To" />
       </Grid>
     </Container>
   );
