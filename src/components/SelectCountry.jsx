@@ -1,5 +1,5 @@
 import { Autocomplete, Grid, Skeleton, TextField } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import useAxios from "./hooks/useAxios";
 
 const SelectCountry = ({ value, setValue, label }) => {
@@ -23,6 +23,7 @@ const SelectCountry = ({ value, setValue, label }) => {
     return `${item.flag} ${Object.keys(item.currencies)[0]} - ${
       item.name.common
     }`;
+    
   });
 
   return (
