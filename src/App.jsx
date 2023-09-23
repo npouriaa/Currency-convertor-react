@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import {
   Alert,
   Box,
+  CircularProgress,
   Container,
   Grid,
   Link,
@@ -17,7 +18,7 @@ import axios from "axios";
 
 const App = () => {
   const boxStyles = {
-    marginTop: "120px",
+    marginTop: "90px",
     background: "#fdfdfd",
     textAlign: "center",
     color: "#222",
@@ -37,20 +38,25 @@ const App = () => {
 
   const [open, setOpen] = useState(false);
   const [resultCurrency, setResultCurrency] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const codeFromCurrency = fromCurrency.split(" ")[1];
   const codeToCurrency = toCurrency.split(" ")[1];
 
   useEffect(() => {
     const fetchResult = async () => {
+      setLoading(true);
       try {
         const res = await axios.get(
           `https://v6.exchangerate-api.com/v6/0b8a7d74c04b2b69b56feebb/pair/${codeFromCurrency}/${codeToCurrency}`
         );
-        console.log(res.data);
         setResultCurrency(res.data.conversion_rate);
       } catch (err) {
+        setError(err.message);
         console.log(err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -102,16 +108,34 @@ const App = () => {
       </Grid>
 
       {firstAmount ? (
-        <Box sx={{ textAlign: "left", marginTop: "16px" }}>
-          <Typography>
-            {firstAmount} {fromCurrency} equals to :
-          </Typography>
-          <Typography
-            variant="h5"
-            sx={{ marginTop: "5px", fontWeight: "bold" }}
-          >
-            {resultCurrency * firstAmount} {toCurrency}
-          </Typography>
+        <Box
+          sx={{
+            marginTop : "30px",
+            width: "100%",
+            height: "50px",
+            padding: "10px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {loading ? (
+            <CircularProgress />
+          ) : error ? (
+            <Typography color="red">Error : {error}</Typography>
+          ) : (
+            <Box sx={{ textAlign: "left", marginTop: "16px" }}>
+              <Typography>
+                {firstAmount} {fromCurrency} equals to :
+              </Typography>
+              <Typography
+                variant="h5"
+                sx={{ marginTop: "5px", fontWeight: "bold" }}
+              >
+                {resultCurrency * firstAmount} {toCurrency}
+              </Typography>
+            </Box>
+          )}
         </Box>
       ) : (
         ""
