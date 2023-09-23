@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./App.css";
 import {
   Alert,
+  Box,
   Container,
   Grid,
   Link,
@@ -46,9 +47,10 @@ const App = () => {
     const fetchResult = async () => {
       try {
         const res = await axios.get(
-          `https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_ye3V6iCO6hvjcFUsd7gy1zEyr7ZXCs74OBuXOjF7&base_currency=${codeFromCurrency}&currencies=${codeToCurrency}`
+          `https://v6.exchangerate-api.com/v6/0b8a7d74c04b2b69b56feebb/pair/${codeFromCurrency}/${codeToCurrency}`
         );
-        setResultCurrency(res.data.data[codeToCurrency]);
+        console.log(res.data);
+        setResultCurrency(res.data.conversion_rate);
       } catch (err) {
         console.log(err);
       }
@@ -57,7 +59,7 @@ const App = () => {
     if (firstAmount) {
       fetchResult();
     }
-  }, [firstAmount]);
+  }, [firstAmount, fromCurrency, toCurrency]);
 
   useEffect(() => {
     if (browserName === "Chrome") {
@@ -100,6 +102,22 @@ const App = () => {
         <SwitchCountry />
         <SelectCountry value={toCurrency} setValue={setToCurrency} label="To" />
       </Grid>
+
+      {firstAmount ? (
+        <Box sx={{ textAlign: "left", marginTop: "16px" }}>
+          <Typography>
+            {firstAmount} {fromCurrency} equals to :
+          </Typography>
+          <Typography
+            variant="h5"
+            sx={{ marginTop: "5px", fontWeight: "bold" }}
+          >
+            {resultCurrency * firstAmount} {toCurrency}
+          </Typography>
+        </Box>
+      ) : (
+        ""
+      )}
     </Container>
   );
 };
