@@ -47,6 +47,7 @@ const App = () => {
   useEffect(() => {
     const fetchResult = async () => {
       setLoading(true);
+      setError("");
       try {
         const res = await axios.get(
           `https://v6.exchangerate-api.com/v6/0b8a7d74c04b2b69b56feebb/pair/${codeFromCurrency}/${codeToCurrency}`
@@ -110,7 +111,7 @@ const App = () => {
       {firstAmount ? (
         <Box
           sx={{
-            marginTop : "30px",
+            marginTop: "30px",
             width: "100%",
             height: "50px",
             padding: "10px",
