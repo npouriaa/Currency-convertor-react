@@ -11,7 +11,6 @@ const useAxios = (url) => {
       try {
         setLoading(true);
         const response = await axios.get(url);
-        // console.log(response.data)
         setData(response.data);
       } catch (err) {
         setError(err);

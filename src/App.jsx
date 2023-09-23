@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./App.css";
 import {
   Alert,
   Box,
