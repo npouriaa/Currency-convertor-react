@@ -3,9 +3,9 @@ import React, { createContext, useState } from "react";
 export const CurrencyContext = createContext();
 
 const CurrencyContextProvider = ({ children }) => {
-  const [fromCurrency, setFromCurrency] = useState("🇮🇷 IRR - Iran");
-  const [toCurrency, setToCurrency] = useState("🇺🇸 USD - United States");
-  const [firstAmount, setFirstAmount] = useState('');
+  const [fromCurrency, setFromCurrency] = useState("🇺🇸 USD - United States");
+  const [toCurrency, setToCurrency] = useState("🇪🇸 EUR - Spain");
+  const [firstAmount, setFirstAmount] = useState("");
 
   const value = {
     fromCurrency,
