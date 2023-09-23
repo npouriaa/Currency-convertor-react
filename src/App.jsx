@@ -50,7 +50,7 @@ const App = () => {
           sx={{ width: "100%" }}
         >
           Your'e currently using Chrome browser. If yore using chrome on Windows 
-          OS, for better experience (display countries flags instead of countries
+          OS, for better user experience (display countries flags instead of countries
           codes ) I recommend you to install country flag fixer extension from{" "}
           <Link href="https://chrome.google.com/webstore/detail/country-flag-fixer/jhcpefjbhmbkgjgipkhndplfbhdecijh">
             here
