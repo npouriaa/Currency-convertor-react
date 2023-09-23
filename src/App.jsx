@@ -18,15 +18,14 @@ import axios from "axios";
 
 const App = () => {
   const boxStyles = {
-    marginTop: "160px",
+    marginTop: "120px",
     background: "#fdfdfd",
     textAlign: "center",
     color: "#222",
     minHeight: "320px",
-    borderRadius: 2,
+    borderRadius: 3,
     padding: "64px 32px",
     boxShadow: "0px 10px 100px 79px rgba(0,0,0,0.1);",
-    position: "relative",
   };
 
   const {
@@ -90,7 +89,7 @@ const App = () => {
         </Alert>
       </Snackbar>
       <Typography variant="h5" sx={{ marginBottom: "32px" }}>
-        Stay ahead with accurate conversions
+        Aaccurate currency conversions
       </Typography>
       <Grid container spacing={2}>
         <InputAmount />
